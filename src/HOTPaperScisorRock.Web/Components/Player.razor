@@ -1,0 +1,30 @@
+            <div class="player">
+                <div class="score">Player @PlayerNumber: @PlayerScore</div>
+                <div class="action">
+                    <i class="@GetActionClass()"></i>
+                </div>
+            </div>
+@code {
+    [Parameter] public int PlayerNumber { get; set; }
+    [Parameter] public int PlayerScore { get; set;}
+    [Parameter] public EnumPlayerAction PlayerAction { get; set; } = EnumPlayerAction.Rock;
+
+    IDictionary<EnumPlayerAction, String> actions = new Dictionary<EnumPlayerAction, String>()
+    {
+        { EnumPlayerAction.Paper , "fa fa-hand-paper-o" },
+        { EnumPlayerAction.Rock , "fa fa-hand-rock-o" },
+        { EnumPlayerAction.Scissors , "fa fa-hand-scissors-o"}
+    };
+
+    public string GetActionClass()
+    {
+        return actions[PlayerAction];
+    }
+    
+    public enum EnumPlayerAction
+    {
+        Rock,
+        Scissors,
+        Paper
+    }
+}
