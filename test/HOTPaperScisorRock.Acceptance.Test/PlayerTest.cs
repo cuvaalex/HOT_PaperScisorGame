@@ -1,3 +1,4 @@
+using HOTPaperScisorRock.Core.Domain;
 using HOTPaperScisorRock.Web.Components;
 
 namespace HOTPaperScisorRock.Acceptance.Test;
@@ -22,10 +23,10 @@ public class PlayerTest : TestContext
     }
     
     [Theory]
-    [InlineData(Player.EnumPlayerAction.Rock, "fa fa-hand-rock-o")]
-    [InlineData(Player.EnumPlayerAction.Scissors, "fa fa-hand-scissors-o")]
-    [InlineData(Player.EnumPlayerAction.Paper, "fa fa-hand-paper-o")]
-    void PlayerDisplayAction(Player.EnumPlayerAction playerAction, string expectedIcon)
+    [InlineData(HandAction.Rock, "fa fa-hand-rock-o")]
+    [InlineData(HandAction.Scissors, "fa fa-hand-scissors-o")]
+    [InlineData(HandAction.Paper, "fa fa-hand-paper-o")]
+    void PlayerDisplayAction(HandAction handAction, string expectedIcon)
     {
         var playerNumber = 1;
         var playerScore = 0;
@@ -33,7 +34,7 @@ public class PlayerTest : TestContext
         var cut = RenderComponent<Player>(parameters => parameters
             .Add(p => p.PlayerNumber, playerNumber)
             .Add(p => p.PlayerScore, playerScore)
-            .Add(p => p.PlayerAction, playerAction)
+            .Add(p => p.PlayerAction, handAction)
         );
 
         cut.Find("i").ClassName.MarkupMatches(expectedIcon);

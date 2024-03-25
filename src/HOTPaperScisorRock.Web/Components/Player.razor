@@ -1,3 +1,4 @@
+@using HOTPaperScisorRock.Core.Domain
             <div class="player">
                 <div class="score">Player @PlayerNumber: @PlayerScore</div>
                 <div class="action">
@@ -7,13 +8,13 @@
 @code {
     [Parameter] public int PlayerNumber { get; set; }
     [Parameter] public int PlayerScore { get; set;}
-    [Parameter] public EnumPlayerAction PlayerAction { get; set; } = EnumPlayerAction.Rock;
+    [Parameter] public HandAction PlayerAction { get; set; } = HandAction.Rock;
 
-    IDictionary<EnumPlayerAction, String> actions = new Dictionary<EnumPlayerAction, String>()
+    IDictionary<HandAction, String> actions = new Dictionary<HandAction, String>()
     {
-        { EnumPlayerAction.Paper , "fa fa-hand-paper-o" },
-        { EnumPlayerAction.Rock , "fa fa-hand-rock-o" },
-        { EnumPlayerAction.Scissors , "fa fa-hand-scissors-o"}
+        { HandAction.Paper , Constant.PaperIcon },
+        { HandAction.Rock , Constant.RockIcon },
+        { HandAction.Scissors , Constant.ScissorsIcon}
     };
 
     public string GetActionClass()
@@ -21,10 +22,5 @@
         return actions[PlayerAction];
     }
     
-    public enum EnumPlayerAction
-    {
-        Rock,
-        Scissors,
-        Paper
-    }
+    
 }
