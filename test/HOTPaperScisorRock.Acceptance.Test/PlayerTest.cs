@@ -18,7 +18,7 @@ public class PlayerTest : TestContext
         
         cut.MarkupMatches(@"<div class=""player"">
                                               <div class=""score"">Player 1: 0</div>
-            <div class=""action""><i class=""fa fa-hand-paper-o""></i></div>
+            <div class=""action""><i class=""fa fa-hand-rock-o""></i></div>
             </div>");
     }
     
@@ -34,7 +34,7 @@ public class PlayerTest : TestContext
         var cut = RenderComponent<Player>(parameters => parameters
             .Add(p => p.PlayerNumber, playerNumber)
             .Add(p => p.PlayerScore, playerScore)
-            .Add(p => p.HandActionPlayer, handAction)
+            .Add(p => p.PlayerAction, handAction)
         );
 
         cut.Find("i").ClassName.MarkupMatches(expectedIcon);

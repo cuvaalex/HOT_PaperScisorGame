@@ -12,7 +12,7 @@ public class HandButtonTest : TestContext
     void HandButtonDisplayAction(HandAction handButtonAction, string expectedIcon)
     {
         var cut = RenderComponent<HandButton>(parameters => parameters
-            .Add(p => p.HandActionButton, handButtonAction)
+            .Add(p => p.ActionButtonHand, handButtonAction)
         );
 
         cut.Find("i").ClassName.MarkupMatches(expectedIcon);

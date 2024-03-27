@@ -3,7 +3,7 @@
 
 @code {
     [Parameter]
-    public HandAction HandActionButton { get; set; }
+    public HandAction ActionButtonHand { get; set; }
     
     IDictionary<HandAction, String> actions = new Dictionary<HandAction, String>()
     {
@@ -14,6 +14,6 @@
     
     public String GetActionClass()
     {
-        return actions[HandActionButton];
+        return actions[ActionButtonHand];
     }
 }
