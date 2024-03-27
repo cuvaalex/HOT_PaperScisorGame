@@ -3,7 +3,7 @@ using HOTPaperScisorRock.Web.Components;
 
 namespace HOTPaperScisorRock.Acceptance.Test;
 
-public class HandButtonTest : TestContext
+public class HandTest : TestContext
 {
     [Theory]
     [InlineData(HandAction.Rock, "fa fa-hand-rock-o")]
@@ -11,8 +11,8 @@ public class HandButtonTest : TestContext
     [InlineData(HandAction.Paper, "fa fa-hand-paper-o")]
     void HandButtonDisplayAction(HandAction handButtonAction, string expectedIcon)
     {
-        var cut = RenderComponent<HandButton>(parameters => parameters
-            .Add(p => p.ActionButtonHand, handButtonAction)
+        var cut = RenderComponent<Hand>(parameters => parameters
+            .Add(p => p.HandAction, handButtonAction)
         );
 
         cut.Find("i").ClassName.MarkupMatches(expectedIcon);

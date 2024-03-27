@@ -1,19 +1,10 @@
 @using HOTPaperScisorRock.Core.Domain
-<button class="round_button"><i class="@GetActionClass()"></i></button>
+<button class="round_button" @onclick="OnClick"><Hand HandAction="HandAction"/></button>
 
 @code {
+    [Parameter] public HandAction HandAction { get; set; }
+    
     [Parameter]
-    public HandAction ActionButtonHand { get; set; }
-    
-    IDictionary<HandAction, String> actions = new Dictionary<HandAction, String>()
-    {
-        { HandAction.Paper , Constant.PaperIcon },
-        { HandAction.Rock , Constant.RockIcon },
-        { HandAction.Scissors , Constant.ScissorsIcon}
-    };
-    
-    public String GetActionClass()
-    {
-        return actions[ActionButtonHand];
-    }
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
 }

@@ -1,0 +1,2 @@
+namespace HOTPaperScisorRock.Core.Domain;
+

@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using HOTPaperScisorRock.Core.Domain
 
 <PageTitle>Home</PageTitle>
 
@@ -11,14 +12,19 @@
         </div>
         <h2>Draw game</h2>
         <div>
-            <button class="round_button"><i class="fa fa-hand-rock-o"></i></button>
-            <button class="round_button"><i class="fa fa-hand-scissors-o"></i></button>
-            <button class="round_button"><i class="fa fa-hand-paper-o"></i></button>
+            @foreach(HandAction hand in Enum.GetValues(typeof(HandAction)))
+            {
+                <HandButton HandAction="@hand" @onclick="() => HanhActionHandler(hand)"/>
+            }
         </div>
     </div>
 </div>
 
 @code
 {
-    
+
+    private Task HanhActionHandler(HandAction hand)
+    {
+        throw new NotImplementedException();
+    }
 }
