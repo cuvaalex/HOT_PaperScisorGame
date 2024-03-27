@@ -12,11 +12,14 @@ public class ScissorsRockPaperUseCaseShould
 
     [Theory]
     [InlineData(HandAction.Rock, HandAction.Scissors, "Rock crushes Scissors")]
-    // [InlineData(HandAction.Scissors, HandAction.Paper, "Scissors cuts Paper")]
-    // [InlineData(HandAction.Paper, HandAction.Rock, "Paper covers Rock")]
-    // [InlineData(HandAction.Scissors, HandAction.Rock, "Rock crushes Scissors")]
-    // [InlineData(HandAction.Paper, HandAction.Scissors, "Scissors cuts Paper")]
-    // [InlineData(HandAction.Rock, HandAction.Paper, "Paper covers Rock")]
+    [InlineData(HandAction.Rock, HandAction.Rock, "Draw")]
+    [InlineData(HandAction.Paper, HandAction.Paper, "Draw")]
+    [InlineData(HandAction.Scissors, HandAction.Scissors, "Draw")]
+    [InlineData(HandAction.Scissors, HandAction.Paper, "Scissors cuts Paper")]
+    [InlineData(HandAction.Paper, HandAction.Rock, "Paper covers Rock")]
+    [InlineData(HandAction.Scissors, HandAction.Rock, "Rock crushes Scissors")]
+    [InlineData(HandAction.Paper, HandAction.Scissors, "Scissors cuts Paper")]
+    [InlineData(HandAction.Rock, HandAction.Paper, "Paper covers Rock")]
     void ReturnExpectedResult(HandAction hand1, HandAction hand2, string expected)
     {
         _useCase = new ScissorsRockPaperUseCase();

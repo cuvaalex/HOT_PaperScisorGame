@@ -7,12 +7,12 @@ public class ScissorsRockPaperUseCase
         var response = request.Hand1 switch
         {
             HandAction.Rock when request.Hand2 == HandAction.Scissors => GetHandActionResponse(1, 0, "Rock crushes Scissors"),
-            // HandAction.Scissors when request.Hand2 == HandAction.Paper => "Scissors cuts Paper",
-            // HandAction.Paper when request.Hand2 == HandAction.Rock => "Paper covers Rock",
-            // HandAction.Scissors when request.Hand2 == HandAction.Rock => "Rock crushes Scissors",
-            // HandAction.Paper when request.Hand2 == HandAction.Scissors => "Scissors cuts Paper",
-            // HandAction.Rock when request.Hand2 == HandAction.Paper => "Paper covers Rock",
-            _ => new HandActionResponse(GetPlayer(1,0), GetPlayer(2,0), "Draw")
+            HandAction.Scissors when request.Hand2 == HandAction.Paper => GetHandActionResponse(1,0, "Scissors cuts Paper"),
+            HandAction.Paper when request.Hand2 == HandAction.Rock => GetHandActionResponse(1, 0, "Paper covers Rock"),
+            HandAction.Scissors when request.Hand2 == HandAction.Rock => GetHandActionResponse(0,1, "Rock crushes Scissors"),
+            HandAction.Paper when request.Hand2 == HandAction.Scissors => GetHandActionResponse(0,1,"Scissors cuts Paper"),
+            HandAction.Rock when request.Hand2 == HandAction.Paper => GetHandActionResponse(0,1,"Paper covers Rock"),
+            _ => GetHandActionResponse(0, 0,"Draw")
         };
         
         return response;
