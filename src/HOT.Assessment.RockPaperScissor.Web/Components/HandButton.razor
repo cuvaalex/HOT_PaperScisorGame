@@ -1,0 +1,10 @@
+@using HOT.Assessment.RockPaperScissor.Core.Domain.Hand
+<button class="round_button" @onclick="OnClickEventCallback"><Hand HandAction="HandAction"/></button>
+
+@code {
+    [Parameter] public HandAction HandAction { get; set; }
+    
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickEventCallback { get; set; }
+    
+}

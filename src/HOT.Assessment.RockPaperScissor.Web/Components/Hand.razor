@@ -1,0 +1,19 @@
+@using HOT.Assessment.RockPaperScissor.Core.Domain.Hand
+<i class="@GetActionClass()"/>
+
+@code {
+    [Parameter]
+    public HandAction HandAction { get; set; }
+    
+    IDictionary<HandAction, String> actions = new Dictionary<HandAction, String>()
+    {
+        { HandAction.Paper , Constant.PaperIcon },
+        { HandAction.Rock , Constant.RockIcon },
+        { HandAction.Scissors , Constant.ScissorsIcon}
+    };
+    
+    public String GetActionClass()
+    {
+        return actions[HandAction];
+    }
+}
