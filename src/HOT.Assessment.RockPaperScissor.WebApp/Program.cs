@@ -1,10 +1,15 @@
-using HOT.Assessment.RockPaperScissor.Web.Components;
+using HOT.Assessment.RockPaperScissor.Core.Domain.Game;
+using HOT.Assessment.RockPaperScissor.Core.UseCase.TwoPlayers;
+using HOT.Assessment.RockPaperScissor.WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<IPaperRockScissorUseCase>(provider 
+    => new PaperRockScissorUseCase(new GamePaperRockScissor()));
+
 
 var app = builder.Build();
 

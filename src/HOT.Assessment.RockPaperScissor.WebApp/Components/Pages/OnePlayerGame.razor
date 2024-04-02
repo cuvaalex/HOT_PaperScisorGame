@@ -1,0 +1,55 @@
+@page "/OnePlayerGame"
+@rendermode InteractiveServer
+
+@using HOT.Assessment.RockPaperScissor.Core.Domain.Hand
+@using HOT.Assessment.RockPaperScissor.Core.UseCase.TwoPlayers
+@inject IPaperRockScissorUseCase PaperRockScissorUseCase;
+<PageTitle>Home</PageTitle>
+
+<div class="center">
+    <h1>Rock Paper Scissor</h1>
+    <div>
+        <div class="container">
+            <div class="player">
+                <div class="score">Player 1: @_playerScore1</div>
+                <div class="action"><i class="@_handIcon1"/></div>
+            </div>
+            <div class="player">
+                <div class="score">Player 2: @_playerScore2</div>
+                <div class="action"><i class="@_handIcon2"/></div>
+            </div>
+        </div>
+        <h2>@_gameResult</h2>
+        <div>
+            @foreach(HandAction hand in Enum.GetValues(typeof(HandAction)))
+            {
+                <button class="round_button" @onclick="() => Hand1ActionChanged(hand)"><Hand HandAction="hand"/></button>
+            }
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private string? _handIcon1 = string.Empty;
+    private string? _handIcon2 = string.Empty;
+    private uint _playerScore1;
+    private uint _playerScore2;
+    private string? _gameResult = string.Empty;
+    
+    
+    private void Hand1ActionChanged(HandAction hand1Action)
+    {
+        _handIcon1 = HandViewHelper.GetActionClass(hand1Action);
+        var hand2Action = PaperRockScissorUseCase.RandomHand();
+        
+        _handIcon2 = HandViewHelper.GetActionClass(hand2Action);
+        
+        var request = new TwoPlayerRequest(hand1Action, hand2Action);
+        
+        var response = PaperRockScissorUseCase.Play(request);
+        _gameResult = response.MessageResult;
+        _playerScore1 = response.Player1.Score.ValueScore;
+        _playerScore2 = response.Player2.Score.ValueScore;
+    }
+}

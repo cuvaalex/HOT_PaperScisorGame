@@ -5,9 +5,9 @@ using HOT.Assessment.RockPaperScissor.Core.UseCase.TwoPlayers;
 
 namespace HOT.Assessment.RockPaperScissor.Core.Test.UseCase;
 
-public class ScissorsRockPaperUseCaseShould
+public class PaperRockScissorUseCaseShould
 {
-    private TwoPlayersUseCase _useCase;
+    private PaperRockScissorUseCase? _useCase;
 
     [Theory]
     [InlineData(HandAction.Rock, HandAction.Scissors, "Rock crushes Scissors")]
@@ -21,10 +21,22 @@ public class ScissorsRockPaperUseCaseShould
     [InlineData(HandAction.Rock, HandAction.Paper, "Paper covers Rock")]
     void ReturnExpectedResult(HandAction hand1, HandAction hand2, string expected)
     {
-        _useCase = new TwoPlayersUseCase(new GamePaperRockScissor());
+        _useCase = new PaperRockScissorUseCase(new GamePaperRockScissor());
+        
         var request = new TwoPlayerRequest(hand1, hand2);
         var result = _useCase.Play(request);
-        result.Result.Should().Be(expected);
+        
+        result.MessageResult.Should().Be(expected);
+    }
+
+    [Fact]
+    void ReturnRandomHandAction()
+    {
+        _useCase = new PaperRockScissorUseCase(new GamePaperRockScissor());
+        var result = _useCase.RandomHand();
+
+
+        result.Should().BeDefined();
     }
 }
 

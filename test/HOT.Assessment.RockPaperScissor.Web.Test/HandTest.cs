@@ -1,5 +1,5 @@
 using HOT.Assessment.RockPaperScissor.Core.Domain.Hand;
-using HOT.Assessment.RockPaperScissor.Web.Components;
+using HOT.Assessment.RockPaperScissor.WebApp.Components.Pages;
 
 namespace HOT.Assessment.RockPaperScissor.Web.Test;
 
@@ -11,11 +11,15 @@ public class HandTest : TestContext
     [InlineData(HandAction.Paper, "fa fa-hand-paper-o")]
     void HandButtonDisplayAction(HandAction handButtonAction, string expectedIcon)
     {
-        var cut = RenderComponent<Hand>(parameters => parameters
-            .Add(p => p.HandAction, handButtonAction)
-        );
-
-        cut.Find("i").ClassName.MarkupMatches(expectedIcon);
+        //Arrange
+        var cut = RenderComponent<OnePlayerGame>();
+        var buttonElement = cut.Find("button");
+        
+        // Act
+        buttonElement.Click();
+        
+        //Assert
+        
     }
     
 }

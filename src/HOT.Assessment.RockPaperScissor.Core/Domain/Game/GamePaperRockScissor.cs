@@ -2,15 +2,22 @@ using HOT.Assessment.RockPaperScissor.Core.Domain.Hand;
 
 namespace HOT.Assessment.RockPaperScissor.Core.Domain.Game;
 
-public class GamePaperRockScissor
+public interface IGamePaperRockScissor
 {
-    private const string RockCrushesScissors = "Rock crushes Scissors";
-    private const string ScissorsCutsPaper = "Scissors cuts Paper";
-    private const string PaperCoversRock = "Paper covers Rock";
+    Player Player1 { get; }
+    Player Player2 { get; }
+    string? Play(HandAction hand1, HandAction hand2);
+}
+
+public class GamePaperRockScissor : IGamePaperRockScissor
+{
+    private const string? RockCrushesScissors = "Rock crushes Scissors";
+    private const string? ScissorsCutsPaper = "Scissors cuts Paper";
+    private const string? PaperCoversRock = "Paper covers Rock";
     public Player Player1 { get; private set; } = new Player(1);
     public Player Player2 { get; private set; } = new Player(2);
     
-    public String Play(HandAction hand1, HandAction hand2)
+    public string? Play(HandAction hand1, HandAction hand2)
     {
         
         return hand1 switch
@@ -26,13 +33,13 @@ public class GamePaperRockScissor
         
     }
 
-    private string Player2Win(String message)
+    private string? Player2Win(string? message)
     {
         Player2 = Player2.IncreaseScore();
         return message;
     }
 
-    private string Player1Win(String message)
+    private string? Player1Win(string? message)
     {
         Player1 = Player1.IncreaseScore();
         return message;
