@@ -1,5 +1,5 @@
 using HOT.Assessment.RockPaperScissor.Core.Domain.Game;
-using HOT.Assessment.RockPaperScissor.Core.UseCase.TwoPlayers;
+using HOT.Assessment.RockPaperScissor.Core.UseCases;
 using HOT.Assessment.RockPaperScissor.WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);

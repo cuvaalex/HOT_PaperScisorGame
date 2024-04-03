@@ -1,7 +1,7 @@
 using HOT.Assessment.RockPaperScissor.Core.Domain.Game;
 using HOT.Assessment.RockPaperScissor.Core.Domain.Hand;
 
-namespace HOT.Assessment.RockPaperScissor.Core.UseCase.TwoPlayers;
+namespace HOT.Assessment.RockPaperScissor.Core.UseCases;
 
 public class PaperRockScissorUseCase(GamePaperRockScissor gamePaperRockScissor) : IPaperRockScissorUseCase
 {
@@ -24,9 +24,15 @@ public class PaperRockScissorUseCase(GamePaperRockScissor gamePaperRockScissor) 
         return randomHand;
     }
 
+    public TwoPlayerResponse NewGame()
+    {
+        gamePaperRockScissor.ResetScore();
+        return BuildTwoPlayerResponse(string.Empty);
+    }
+
     private TwoPlayerResponse BuildTwoPlayerResponse(string? result)
     {
-        return new TwoPlayerResponse(gamePaperRockScissor.Player1, gamePaperRockScissor.Player2, result);
+        return new TwoPlayerResponse(gamePaperRockScissor.Player1Score, gamePaperRockScissor.Player2Score, result);
     }
 
 

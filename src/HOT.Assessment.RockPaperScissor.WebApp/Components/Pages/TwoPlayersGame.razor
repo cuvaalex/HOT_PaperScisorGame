@@ -1,10 +1,11 @@
-@page "/OnePlayerGame"
+@page "/TwoPlayersGame"
+@rendermode InteractiveServer
+
 @using HOT.Assessment.RockPaperScissor.Core.Domain.Hand
 @using HOT.Assessment.RockPaperScissor.Core.UseCases
-@rendermode InteractiveServer
 @inject IPaperRockScissorUseCase PaperRockScissorUseCase;
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Two Player Game</PageTitle>
 
 <div class="center">
     <h1>Rock Paper Scissor</h1>
@@ -12,27 +13,36 @@
         <div class="container">
             <div class="player">
                 <div class="score">Player 1: @_playerScore1</div>
-                <div class="action">
-                    <i class="@_handIcon1"></i>
-                </div>
+                <div class="action"><i class="@_handIcon1"></i></div>
             </div>
             <div class="player">
                 <div class="score">Player 2: @_playerScore2</div>
-                <div class="action">
-                    <i class="@_handIcon2"></i>
-                </div>
+                <div class="action"><i class="@_handIcon2"></i></div>
             </div>
         </div>
+                @if (!_isGameEnded)
+                {
+                    <div class="container">
+
+                        <div class="player">
+                            @foreach (HandAction hand in Enum.GetValues(typeof(HandAction)))
+                            {
+                                <button disabled="@_isGameEnded" class="round_button" @onclick="() => Hand1ActionChanged(hand)"><Hand HandAction="hand"/></button>
+                            }
+                        </div>
+                        <div class="player">
+                            @foreach (HandAction hand in Enum.GetValues(typeof(HandAction)))
+                            {
+                                <button disabled="@_isGameEnded" class="round_button" @onclick="() => Hand2ActionChanged(hand)"><Hand HandAction="hand"/></button>
+                            }
+                        </div>
+                    </div>
+                }
         <h2>@_gameResult</h2>
         @if (!_isGameEnded)
         {
             <div>
-                @foreach (HandAction hand in Enum.GetValues(typeof(HandAction)))
-                {
-                    <button disabled="@_isGameEnded" class="round_button" @onclick="() => Hand1ActionChanged(hand)">
-                        <Hand HandAction="hand"/>
-                    </button>
-                }
+                <button @onclick="VerifyWinner">Play</button>    
             </div>
         }
         @if (_isGameEnded)
@@ -49,21 +59,19 @@
 {
     private string? _handIcon1 = string.Empty;
     private string? _handIcon2 = string.Empty;
+    private HandAction _hand1Action;
+    private HandAction _hand2Action;
     private uint _playerScore1;
     private uint _playerScore2;
     private string? _gameResult = string.Empty;
     private bool _isGameEnded = true;
-    private string _gameOverMessage = string.Empty;
+    private string _gameOverMessage = String.Empty;
 
 
-    private void Hand1ActionChanged(HandAction hand1Action)
+    private void VerifyWinner()
     {
-        var hand2Action = GetComputerHand2Action();
-
-        UpdatePlayer1Hand(hand1Action);
-        UpdatePlayer2Hand(hand2Action);
-
-        GetGameResults(hand1Action, hand2Action);
+        
+        GetGameResults(_hand1Action, _hand2Action);
 
         GetWinner();
     }
@@ -72,8 +80,21 @@
     {
         _isGameEnded = CheckButtonState();
         if (!_isGameEnded) return;
-        var playerNumber = _playerScore1 > 2 ? 1 : 2;
+        var playerNumber = (_playerScore1 > 2) ? 1 : 2;
         _gameOverMessage = $"Player {playerNumber} Win";
+
+    }
+
+    private void Hand1ActionChanged(HandAction hand)
+    {
+        _hand1Action = hand;
+        UpdatePlayer1Hand(hand);
+    }
+    
+    private void Hand2ActionChanged(HandAction hand)
+    {
+        _hand2Action = hand;
+        UpdatePlayer2Hand(hand);
     }
 
     private void NewGame()
@@ -81,7 +102,7 @@
         var response = PaperRockScissorUseCase.NewGame();
         UpdatePlayersState(response);
         _isGameEnded = CheckButtonState();
-        _gameOverMessage = string.Empty;
+        _gameOverMessage = String.Empty;
     }
 
     private bool CheckButtonState()
@@ -112,13 +133,4 @@
     {
         _handIcon2 = HandViewHelper.GetActionClass(hand2Action);
     }
-
-    private HandAction GetComputerHand2Action()
-    {
-        var hand2Action = PaperRockScissorUseCase.RandomHand();
-        _handIcon2 = HandViewHelper.GetActionClass(hand2Action);
-        return hand2Action;
-    }
-
-
 }

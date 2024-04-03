@@ -1,0 +1,12 @@
+@using HOT.Assessment.RockPaperScissor.Core.Domain.Hand
+<i class="@GetActionClass()"/>
+
+@code {
+    [Parameter]
+    public HandAction HandAction { get; set; }
+
+    private string? GetActionClass()
+    {
+        return HandViewHelper.GetActionClass(HandAction);
+    }
+}

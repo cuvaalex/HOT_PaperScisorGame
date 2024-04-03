@@ -2,24 +2,17 @@ using HOT.Assessment.RockPaperScissor.Core.Domain.Hand;
 
 namespace HOT.Assessment.RockPaperScissor.Core.Domain.Game;
 
-public interface IGamePaperRockScissor
+public class GamePaperRockScissor
 {
-    Player Player1 { get; }
-    Player Player2 { get; }
-    string? Play(HandAction hand1, HandAction hand2);
-}
+    private const string RockCrushesScissors = "Rock crushes Scissors";
+    private const string ScissorsCutsPaper = "Scissors cuts Paper";
+    private const string PaperCoversRock = "Paper covers Rock";
 
-public class GamePaperRockScissor : IGamePaperRockScissor
-{
-    private const string? RockCrushesScissors = "Rock crushes Scissors";
-    private const string? ScissorsCutsPaper = "Scissors cuts Paper";
-    private const string? PaperCoversRock = "Paper covers Rock";
-    public Player Player1 { get; private set; } = new Player(1);
-    public Player Player2 { get; private set; } = new Player(2);
-    
+    public Score Player1Score { get; private set; } = new Score();
+    public Score Player2Score { get; private set; } = new Score();
+
     public string? Play(HandAction hand1, HandAction hand2)
     {
-        
         return hand1 switch
         {
             HandAction.Rock when hand2 == HandAction.Scissors => Player1Win(RockCrushesScissors),
@@ -30,18 +23,23 @@ public class GamePaperRockScissor : IGamePaperRockScissor
             HandAction.Rock when hand2 == HandAction.Paper => Player2Win(PaperCoversRock),
             _ => "Draw"
         };
-        
+    }
+    
+    public void ResetScore()
+    {
+        Player1Score = new Score();
+        Player2Score = new Score();
     }
 
     private string? Player2Win(string? message)
     {
-        Player2 = Player2.IncreaseScore();
+        Player2Score = Player2Score.IncreaseScore();
         return message;
     }
 
     private string? Player1Win(string? message)
     {
-        Player1 = Player1.IncreaseScore();
+        Player1Score = Player1Score.IncreaseScore();
         return message;
     }
 }

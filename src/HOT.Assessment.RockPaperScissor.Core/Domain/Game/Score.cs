@@ -6,4 +6,5 @@ public record Score(uint ValueScore = 0)
     {
         return new Score(ValueScore + 1);
     }
+    
 }

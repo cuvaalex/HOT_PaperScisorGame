@@ -1,7 +1,7 @@
 using FluentAssertions;
 using HOT.Assessment.RockPaperScissor.Core.Domain.Game;
 using HOT.Assessment.RockPaperScissor.Core.Domain.Hand;
-using HOT.Assessment.RockPaperScissor.Core.UseCase.TwoPlayers;
+using HOT.Assessment.RockPaperScissor.Core.UseCases;
 
 namespace HOT.Assessment.RockPaperScissor.Core.Test.UseCase;
 
@@ -37,6 +37,24 @@ public class PaperRockScissorUseCaseShould
 
 
         result.Should().BeDefined();
+    }
+
+    [Fact]
+    void ReturnZeroScoreForBothPlayerWhenNewGame()
+    {
+        _useCase = new PaperRockScissorUseCase(new GamePaperRockScissor());
+        var request = new TwoPlayerRequest(HandAction.Paper, HandAction.Rock);
+        var response = _useCase.Play(request);
+        response.Should().NotBeNull();
+        response.Player1Score.ValueScore.Should().BeGreaterThan(0);
+        response.Player2Score.ValueScore.Should().Be(0);
+
+        response = _useCase.NewGame();
+        
+
+        response.Should().NotBeNull();
+        response.Player1Score.ValueScore.Should().Be(0);
+        response.Player2Score.ValueScore.Should().Be(0);
     }
 }
 

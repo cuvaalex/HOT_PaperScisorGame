@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOT.Assessment.RockPaperSci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOT.Assessment.RockPaperScissor.WebApp", "src\HOT.Assessment.RockPaperScissor.WebApp\HOT.Assessment.RockPaperScissor.WebApp.csproj", "{A7AAF73B-281F-4379-88C7-1EECCBCCA1E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOT.Assessment.RockPaperScissor.Architecture.Test", "test\HOT.Assessment.RockPaperScissor.Architecture.Test\HOT.Assessment.RockPaperScissor.Architecture.Test.csproj", "{F9DD75E8-1BC6-4A54-B61F-285C50E04928}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,11 +44,15 @@ Global
 		{A7AAF73B-281F-4379-88C7-1EECCBCCA1E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7AAF73B-281F-4379-88C7-1EECCBCCA1E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7AAF73B-281F-4379-88C7-1EECCBCCA1E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9DD75E8-1BC6-4A54-B61F-285C50E04928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9DD75E8-1BC6-4A54-B61F-285C50E04928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9DD75E8-1BC6-4A54-B61F-285C50E04928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9DD75E8-1BC6-4A54-B61F-285C50E04928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{85C79947-6751-4D13-B393-71C574573D9D} = {9391B48F-CCBB-4313-8517-3037901DA75D}
 		{9D29019E-B5C7-4FDC-8403-A764FB6CF0C0} = {9391B48F-CCBB-4313-8517-3037901DA75D}
 		{7AB31510-718A-4A3B-ABF8-81F1BBA3A1B1} = {B9E919C6-1EB4-4F16-9218-A75D47D20E4A}
 		{A7AAF73B-281F-4379-88C7-1EECCBCCA1E0} = {9391B48F-CCBB-4313-8517-3037901DA75D}
+		{F9DD75E8-1BC6-4A54-B61F-285C50E04928} = {B9E919C6-1EB4-4F16-9218-A75D47D20E4A}
 	EndGlobalSection
 EndGlobal
