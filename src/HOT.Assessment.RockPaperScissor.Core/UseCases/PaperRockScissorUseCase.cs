@@ -1,5 +1,4 @@
 using HOT.Assessment.RockPaperScissor.Core.Domain.Game;
-using HOT.Assessment.RockPaperScissor.Core.Domain.Hand;
 
 namespace HOT.Assessment.RockPaperScissor.Core.UseCases;
 
@@ -32,7 +31,7 @@ public class PaperRockScissorUseCase(GamePaperRockScissor gamePaperRockScissor) 
 
     private TwoPlayerResponse BuildTwoPlayerResponse(string? result)
     {
-        return new TwoPlayerResponse(gamePaperRockScissor.Player1Score, gamePaperRockScissor.Player2Score, result);
+        return new TwoPlayerResponse(gamePaperRockScissor, result);
     }
 
 

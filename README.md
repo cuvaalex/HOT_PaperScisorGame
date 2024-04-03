@@ -2,43 +2,28 @@
 
 [![CI](https://github.com/cuvaalex/HOT_PaperScisorGame/blob/main/.github/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/cuvaalex/HOT_PaperScisorGame/blob/main/.github/workflows/ci.yaml)
 
-User Story Front
+## Project Request
+### User Story Front
 
-+--------------------------------------------------+
-|
-| 	Title: Waste an Hour Having Fun
-|
-| As a frequent games player,
-| I'd like to play rock, paper, scissors
-| so that I can spend an hour of my day having fun
-|
-| Acceptance Criteria
-|  - I can play Player vs Computer
-|  - I can play Computer vs Computer
-|  - I can play a different game each time
-|
-|
-+--------------------------------------------------+
+ 	Title: Waste an Hour Having Fun
+
+ As a frequent games player,
+ I'd like to play rock, paper, scissors
+ so that I can spend an hour of my day having fun
+
+ Acceptance Criteria
+  - I can play Player vs Computer
+  - I can play Computer vs Computer
+  - I can play a different game each time
 
 User Story Back
 
-+--------------------------------------------------+
-|
-|
-|
-| Technical Constraints
-|
-| - Doesn't necessarily need a flashy GUI
-|   (can be simple)
-| - Use Java or any other object-oriented language
-| - Libs / external modules should only be used
-|   for tests
-| - Using agile engineering
-|   practices
-|
-|
-|
-+--------------------------------------------------+
+ Technical Constraints
+
+ - Doesn't necessarily need a flashy GUI (can be simple)
+ - Use Java or any other object-oriented language
+ - Libs / external modules should only be used for tests
+ - Using agile engineering practices
 
 Don't know the game? http://en.wikipedia.org/wiki/Rock-paper-scissors
 
@@ -76,10 +61,8 @@ To get a coverage.corbetura.xml, so it can be interpreted by a corbetura tool
 dotnet test --collect "XPlat Code Coverage"
 ```
 
-
-## To launch the game
-
-````
+To launch the game
+```
 cd /src/HOT.Assessment.RockPaperScissor.WebApp
 dotnet run
 ```

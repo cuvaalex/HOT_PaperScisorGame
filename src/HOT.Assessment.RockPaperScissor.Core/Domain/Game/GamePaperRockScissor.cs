@@ -1,5 +1,3 @@
-using HOT.Assessment.RockPaperScissor.Core.Domain.Hand;
-
 namespace HOT.Assessment.RockPaperScissor.Core.Domain.Game;
 
 public class GamePaperRockScissor

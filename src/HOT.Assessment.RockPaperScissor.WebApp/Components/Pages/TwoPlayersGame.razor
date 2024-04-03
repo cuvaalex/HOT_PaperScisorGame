@@ -1,8 +1,8 @@
 @page "/TwoPlayersGame"
 @rendermode InteractiveServer
-
-@using HOT.Assessment.RockPaperScissor.Core.Domain.Hand
 @using HOT.Assessment.RockPaperScissor.Core.UseCases
+@using Hand = HOT.Assessment.RockPaperScissor.WebApp.Components.Hand
+@using HOT.Assessment.RockPaperScissor.Core.Domain.Game
 @inject IPaperRockScissorUseCase PaperRockScissorUseCase;
 
 <PageTitle>Two Player Game</PageTitle>
@@ -120,8 +120,8 @@
     private void UpdatePlayersState(TwoPlayerResponse response)
     {
         _gameResult = response.MessageResult;
-        _playerScore1 = response.Player1Score.ValueScore;
-        _playerScore2 = response.Player2Score.ValueScore;
+        _playerScore1 = response.Player1Score.Value;
+        _playerScore2 = response.Player2Score.Value;
     }
 
     private void UpdatePlayer1Hand(HandAction hand1Action)
