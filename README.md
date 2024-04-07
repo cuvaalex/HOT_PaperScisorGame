@@ -61,6 +61,13 @@ To get a coverage.corbetura.xml, so it can be interpreted by a corbetura tool
 dotnet test --collect "XPlat Code Coverage"
 ```
 
+Run Mutation Testing:
+```
+cd .\test\Optivem.Kata.Banking.Core.Test
+PM> dotnet tool run dotnet-stryker
+
+```
+
 To launch the game
 ```
 cd /src/HOT.Assessment.RockPaperScissor.WebApp
